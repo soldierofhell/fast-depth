@@ -63,9 +63,13 @@ def main():
 def validate(val_loader, model, epoch, write_to_file=True):
     average_meter = AverageMeter()
     model.eval() # switch to evaluate mode
+            
+    #dummy_input = torch.randn(10, 3, 224, 224, device='cuda')
+    #torch.onnx.export(model, dummy_input, "alexnet.onnx")
+            
     end = time.time()
     for i, (input, target) in enumerate(val_loader):
-        input, target = input.cuda(), target.cuda()
+        input, target = input.cuda(), target.cuda()            
         # torch.cuda.synchronize()
         data_time = time.time() - end
 
