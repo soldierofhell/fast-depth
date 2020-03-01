@@ -65,7 +65,7 @@ def validate(val_loader, model, epoch, write_to_file=True):
     model.eval() # switch to evaluate mode
             
     dummy_input = torch.randn(10, 3, 224, 224, device='cuda') # todo: val_loader
-    torch.onnx.export(model, dummy_input, "alexnet.onnx")
+    torch.onnx.export(model, dummy_input, "fast_depth.onnx", opset_version=11)
             
     end = time.time()
     for i, (input, target) in enumerate(val_loader):
